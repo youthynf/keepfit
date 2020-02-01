@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 引入资源文件 -->
+	<constant name="struts.custom.i18n.resources" value="messageResource"></constant>
+
+	<!-- 配置Struts2应用的编码集 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.multipart.maxSize" value="10000000000" />
+	
+	<!-- 默认访问页面 -->
+	<package name="default" extends="struts-default" namespace="/">
+		<default-action-ref name="default"></default-action-ref>
+		<action name="default">
+			<result>jsp/index.jsp</result>
+		</action>
+	</package>
+
+	<!-- 包含分文件示例 -->
+	<!-- <include file="fileName.xml"></include> -->
+	
+	<!-- 方法链接 -->
+	<package name="all" namespace="/" extends="json-default">	
+		<!-- 方法示例 -->
+		<!-- <action name="MethodName" class="com.fyc.action.fileName" method="MethodName">
+			<result type="json">
+				<param name="root">param</param>
+			</result>
+		</action>
+		<action name="MethodName" class="com.fyc.action.fileName" method="MethodName">
+			<result>URL</result>
+		</action> -->
+		
+		<!-- 注册测试 -->
+		<action name="saveUser" class="com.action.UserAction" method="saveUser">
+			<result type="json">
+				<param name="root">state</param>
+			</result>
+		</action>
+		
+		<!-- 删除测试 -->
+		<action name="delUserById" class="com.action.UserAction" method="delUserById">
+			<result type="json">
+				<param name="root">state</param>
+			</result>
+		</action>
+		
+		<!-- HQL语句查询测试 -->
+		<action name="queryUserByHql" class="com.action.UserAction" method="queryUserByHql">
+			<result type="json">
+				<param name="root">state</param>
+			</result>
+		</action>
+		
+		<action name="test" class="com.action.UserAction" method="test">
+			<result>jsp/index.jsp</result>
+		</action>
+	</package>
+</struts>

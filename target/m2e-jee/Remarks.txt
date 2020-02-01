@@ -1,0 +1,8 @@
+问题报告：
+1、struts2继承"json-default"一直报错，架包存在也报错
+	更换架包版本到struts2-json-plugin2.3.16.1即可
+	
+2、只读报错readOnly
+	在applicationContext.xml中开启事务注解
+		<tx:annotation-driven transaction-manager="transactionManager"/>
+	在Dao层添加事务注解@Transactional即可
