@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.hibernate.Session;
 
+import com.entity.User;
+
 public interface CommonDao<T> {
 	/**
 	 * 存储对象
@@ -66,4 +68,7 @@ public interface CommonDao<T> {
 	 */
 	public void saveOrUpdate(T t);
 	
+	public List<User> findUserByName(String userName);
+	
+	public List<User> getAllUsers();
 }

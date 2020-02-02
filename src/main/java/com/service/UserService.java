@@ -29,5 +29,17 @@ public interface UserService {
 	 * @return
 	 */
 	public List<User> executeByHql(String hql);
-
+	
+	/**
+	 * 通过用户名查询用户信息
+	 * @param userName
+	 * @return
+	 */
+	public List<User> findUserByName(String userName);
+	
+	/**
+	 * 获取所有会员列表
+	 * @return
+	 */
+	public List<User> getAllUsers();
 }

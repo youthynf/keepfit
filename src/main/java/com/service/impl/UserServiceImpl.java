@@ -31,4 +31,15 @@ public class UserServiceImpl implements UserService {
 		return this.commonDao.executeByHql(hql);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> findUserByName(String userName) {
+		return this.commonDao.findUserByName(userName);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getAllUsers() {
+		return this.commonDao.getAllUsers();
+	}
 }

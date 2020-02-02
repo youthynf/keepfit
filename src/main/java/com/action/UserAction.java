@@ -1,6 +1,7 @@
 package com.action;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.service.UserService;
 import com.entity.User;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Controller
@@ -130,6 +132,13 @@ public class UserAction extends ActionSupport {
 	public String test() {
 		System.out.println("testAction....");
 		state = 1;
+		return SUCCESS;
+	}
+	
+	public String userList() {
+		List<User> userList = this.userService.getAllUsers();
+		Map request = (Map) ActionContext.getContext().get("request");
+		request.put("users_list", userList);
 		return SUCCESS;
 	}
 }

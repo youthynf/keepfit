@@ -57,5 +57,27 @@
 		<action name="test" class="com.action.UserAction" method="test">
 			<result>jsp/index.jsp</result>
 		</action>
+		
+		<!-- 后台管理控制器链接 -->
+		<action name="adminLogin" class="com.action.AdminAction" method="login">
+			<result name="success" type="redirectAction">adminIndex</result>
+			<result name="input">jsp/admin/login.jsp</result>
+		</action>
+		<action name="checkLogin" class="com.action.AdminAction" method="checkLogin">
+			<result type="json">
+				<param name="root">state</param>
+			</result>
+		</action>
+		<action name="adminIndex" class="com.action.AdminAction" method="index">
+			<result name="success">jsp/admin/index.jsp</result>
+			<result name="input" type="redirectAction">adminLogin</result>
+		</action>
+		<action name="adminStatistic" class="com.action.AdminAction" method="statistic">
+			<result name="success">jsp/admin/statistic.jsp</result>
+			<result name="input" type="redirectAction">adminLogin</result>
+		</action>
+		<action name="userList" class="com.action.UserAction" method="userList">
+			<result name="success">jsp/admin/userList.jsp</result>
+		</action>
 	</package>
 </struts>

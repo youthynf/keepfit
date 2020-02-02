@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.CommonDao;
+import com.entity.User;
 
 @Repository
 @Transactional
@@ -76,4 +77,19 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 		getSession().saveOrUpdate(t);
 	}
 	
+	@Override
+	public List<User> findUserByName(String userName) {
+		String sql = "from User where username = '" + userName + "'";
+		Query query = getSession().createQuery(sql);
+		List list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<User> getAllUsers() {
+		String sql = "from User where admin = 0";
+		Query query = getSession().createQuery(sql);
+		List list = query.list();
+		return list;
+	}
 }
