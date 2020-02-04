@@ -86,10 +86,19 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 	}
 	
 	@Override
-	public List<User> getAllUsers() {
-		String sql = "from User where admin = 0";
+	public List<User> getAllUsers(String where_str) {
+		String sql = "from User " + where_str;
 		Query query = getSession().createQuery(sql);
 		List list = query.list();
 		return list;
+	}
+	
+	@Override
+	public User getUserById(Integer id) {
+		String sql = "from User where id = " + id;
+		Query query = getSession().createQuery(sql);
+		List list = query.list();
+		User user = (User)list.get(0);
+		return user;
 	}
 }

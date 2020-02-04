@@ -14,6 +14,12 @@ public interface UserService {
 	public void saveUser(User user);
 	
 	/**
+	 * 更新用户
+	 * @param user
+	 */
+	public void updateUser(User user);
+	
+	/**
 	 * 删除用户
 	 * @date	2018-6-28 上午11:44:14
 	 * @author	live
@@ -41,5 +47,13 @@ public interface UserService {
 	 * 获取所有会员列表
 	 * @return
 	 */
-	public List<User> getAllUsers();
+	public List<User> getAllUsers(String where_str);
+	
+	/**
+	 * 通过id查询用户
+	 * @param user
+	 * @param id
+	 * @return
+	 */
+	public User getUserById(Integer id);
 }

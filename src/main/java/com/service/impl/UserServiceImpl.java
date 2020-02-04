@@ -19,6 +19,11 @@ public class UserServiceImpl implements UserService {
 	public void saveUser(User user) {
 		this.commonDao.save(user);
 	}
+	
+	@Override
+	public void updateUser(User user) {
+		this.commonDao.update(user);
+	}
 
 	@Override
 	public void delUser(User user) {
@@ -39,7 +44,13 @@ public class UserServiceImpl implements UserService {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getAllUsers() {
-		return this.commonDao.getAllUsers();
+	public List<User> getAllUsers(String where_str) {
+		return this.commonDao.getAllUsers(where_str);
+	}
+	
+	@SuppressWarnings("unckecked")
+	@Override
+	public User getUserById(Integer id) {
+		return this.commonDao.getUserById(id);
 	}
 }

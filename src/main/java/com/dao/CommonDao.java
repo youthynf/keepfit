@@ -70,5 +70,7 @@ public interface CommonDao<T> {
 	
 	public List<User> findUserByName(String userName);
 	
-	public List<User> getAllUsers();
+	public List<User> getAllUsers(String where_str);
+	
+	public User getUserById(Integer id);
 }

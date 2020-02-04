@@ -79,5 +79,18 @@
 		<action name="userList" class="com.action.UserAction" method="userList">
 			<result name="success">jsp/admin/userList.jsp</result>
 		</action>
+		<action name="adminList" class="com.action.UserAction" method="adminList">
+			<result name="success">jsp/admin/adminList.jsp</result>
+		</action>
+		<action name="stopUser" class="com.action.UserAction" method="stopUser">
+			<result type="json">
+				<param name="root">state</param>
+			</result>
+		</action>
+		<action name="getUser" class="com.action.UserAction" method="getUserById">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
 	</package>
 </struts>

@@ -1,4 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <!DOCTYPE HTML>
 <html>
@@ -39,17 +41,18 @@
 			class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
 	<div class="pd-20">
-		<form id="search_form" action="userSearch" method="post">
+		<form id="search_form" action="userList" method="post">
 			<div class="text-c">
 				日期范围： <input type="text"
 					onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"
-					id="datemin" name="datemin" class="input-text Wdate"
-					style="width: 120px;" autocomplete="off" value="${datemin}"> - <input type="text"
+					id="datemin" name="dateMin" class="input-text Wdate"
+					style="width: 120px;" autocomplete="off" value="${dateMin}"> - <input type="text"
 					onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})"
-					id="datemax" name="datemax" class="input-text Wdate"
-					style="width: 120px;" autocomplete="off"  value="${datemax}"> <input type="text"
+					id="datemax" name="dateMax" class="input-text Wdate"
+					style="width: 120px;" autocomplete="off"  value="${dateMax}"> <input type="text"
 					class="input-text" style="width: 250px" placeholder="输入会员名称"
-					id="info" name="info"  value="${info}">
+					id="username" name="userName"  value="${userName}">
+					<input type="hidden" name="admin" value="${admin}">	
 				<button type="submit" class="btn btn-success" id="" name="">
 					<i class="icon-search"></i> 搜用户
 				</button>
@@ -81,14 +84,16 @@
 						<td>${user.phone}</td>
 						<td>${user.email}</td>
 						<td class="text-l">${user.address}</td>
-						<td>${user.add_time}</td>
+						<jsp:useBean id="timestamp" class="java.util.Date"/> 
+						<jsp:setProperty name="timestamp" property="time" value="${user.add_time*1000}"/>  
+						<td><fmt:formatDate value="${timestamp}" pattern="MM/dd/yyyy HH:mm:ss"/></td>
 						<td class="user-status"><s:if test="#user.status == 1">
 								<span class="label label-success">正常</span>
 							</s:if> <s:else>
 								<span class="label label-success">已禁用</span>
 							</s:else></td>
 						<td class="f-14 user-manage">
-							<a style="text-decoration: none;<s:if test="#user.status != 1">color:#ccc</s:if>" <s:if test="#user.status == 1">onClick="user_stop(${user[0]})"</s:if>href="javascript:;" title="停用"><i class="icon-hand-down"></i>停用</a> 
+							<a style="text-decoration: none;<s:if test="#user.status != 1">color:#ccc</s:if>" <s:if test="#user.status == 1">onClick="user_stop(${user.id})"</s:if>href="javascript:;" title="停用"><i class="icon-hand-down"></i>停用</a> 
 							<a style="text-decoration: none" class="ml-5" onClick="user_password_edit('10001','370','228','修改密码','user-password-edit.html')" href="javascript:;" title="修改密码"><i class="icon-key"></i>编辑</a>
 						</td>
 					</tr>
